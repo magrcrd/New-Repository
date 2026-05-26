@@ -59,7 +59,149 @@ export default function Catalogo() {
       color: "Blanca",
       category: "SUV",
     },
+{
+  name: "Daihatsu Mira 2020",
+  image: "/carro23.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Negro",
+  category: "Económico",
+},
 
+{
+  name: "Mitsubishi Mirage G4 2019",
+  image: "/carro24.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Azul",
+  category: "Económico",
+},
+
+{
+  name: "Daihatsu Mira 2019",
+  image: "/carro25.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Azul",
+  category: "Económico",
+},
+
+{
+  name: "Toyota Passo 2020",
+  image: "/carro26.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Gris",
+  category: "Económico",
+},
+
+{
+  name: "Nissan Note 2019",
+  image: "/carro27.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Daihatsu Mira 2020",
+  image: "/carro28.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Mitsubishi Mirage G4 2019",
+  image: "/carro29.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Mitsubishi Mirage G4 2019",
+  image: "/carro30.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Rojo",
+  category: "Económico",
+},
+
+{
+  name: "Daihatsu Mira 2020",
+  image: "/carro31.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Daihatsu Mira 2016",
+  image: "/carro32.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Mitsubishi Mirage Hatchback G4 2019",
+  image: "/carro33.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Gris",
+  category: "Económico",
+},
+
+{
+  name: "Kia Sorento SEL 2019",
+  image: "/carro34.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "SUV",
+},
+
+{
+  name: "Daihatsu Mira 2016",
+  image: "/carro35.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Suzuki Alto 2019",
+  image: "/carro36.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Daihatsu Mira 2019",
+  image: "/carro37.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Blanco",
+  category: "Económico",
+},
+
+{
+  name: "Suzuki Alto 2016",
+  image: "/carro38.jpg",
+  transmission: "Automático",
+  fuel: "Gasolina",
+  color: "Gris",
+  category: "Económico",
+},
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("Todos");
