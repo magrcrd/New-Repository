@@ -1,27 +1,106 @@
 export default function Catalogo() {
+const cars = [
 
-  const cars = [
-    {
-      name: "Hyundai Elantra SEL 2020",
-      image: "/carro1.jpg",
-      transmission: "Automático",
-      fuel: "Gasolina",
-    },
+  {
+    name: "Hyundai Elantra SEL 2020",
+    image: "/carro1.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Gris",
+    category: "Económico",
+  },
 
-    {
-      name: "Kia Sorento 2020",
-      image: "/carro2.jpg",
-      transmission: "Automático",
-      fuel: "Gasolina",
-    },
+  {
+    name: "Kia Sorento SEL 4X4 2020",
+    image: "/carro2.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Gris",
+    category: "SUV Grande",
+  },
 
-    {
-      name: "Chevrolet Tahoe 2025",
-      image: "/carro3.jpg",
-      transmission: "Automático",
-      fuel: "Gasolina",
-    },
-  ];
+  {
+    name: "Chevrolet Tahoe LT 2025",
+    image: "/carro3.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Negro",
+    category: "SUV Luxury",
+  },
+
+  {
+    name: "Mitsubishi Mirage G4 2020",
+    image: "/carro4.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Rojo",
+    category: "Económico",
+  },
+
+  {
+    name: "Mitsubishi Mirage G4 2020",
+    image: "/carro5.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Azul",
+    category: "Económico",
+  },
+
+  {
+    name: "Daihatsu Mira 2020",
+    image: "/carro23.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Rojo",
+    category: "Económico",
+  },
+
+  {
+    name: "Subaru Pleo 2020",
+    image: "/carro10.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Rojo",
+    category: "Económico",
+  },
+
+  {
+    name: "Toyota Passo 2020",
+    image: "/carro16.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Gris",
+    category: "Económico",
+  },
+
+  {
+    name: "Ford Escape 4x4 SEL 2019",
+    image: "/carro19.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Blanca",
+    category: "SUV Mediana",
+  },
+
+  {
+    name: "Nissan Note 2019",
+    image: "/carro27.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Blanco",
+    category: "Económico",
+  },
+
+  {
+    name: "Suzuki Alto 2019",
+    image: "/carro36.jpg",
+    transmission: "Automático",
+    fuel: "Gasolina",
+    color: "Blanco",
+    category: "Económico",
+  },
+
+];
 
   return (
     <main className="bg-black text-white min-h-screen px-6 py-24">
