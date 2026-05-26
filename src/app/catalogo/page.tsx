@@ -1,108 +1,76 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Catalogo() {
-const cars = [
 
-  {
-    name: "Hyundai Elantra SEL 2020",
-    image: "/carro1.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Gris",
-    category: "Económico",
-  },
+  const cars = [
 
-  {
-    name: "Kia Sorento SEL 4X4 2020",
-    image: "/carro2.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Gris",
-    category: "SUV Grande",
-  },
+    {
+      name: "Hyundai Elantra SEL 2020",
+      image: "/carro1.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+      color: "Gris",
+      category: "Económico",
+    },
 
-  {
-    name: "Chevrolet Tahoe LT 2025",
-    image: "/carro3.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Negro",
-    category: "SUV Luxury",
-  },
+    {
+      name: "Kia Sorento SEL 4X4 2020",
+      image: "/carro2.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+      color: "Gris",
+      category: "SUV",
+    },
 
-  {
-    name: "Mitsubishi Mirage G4 2020",
-    image: "/carro4.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Rojo",
-    category: "Económico",
-  },
+    {
+      name: "Chevrolet Tahoe LT 2025",
+      image: "/carro3.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+      color: "Negro",
+      category: "Luxury",
+    },
 
-  {
-    name: "Mitsubishi Mirage G4 2020",
-    image: "/carro5.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Azul",
-    category: "Económico",
-  },
+    {
+      name: "Mitsubishi Mirage G4 2020",
+      image: "/carro4.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+      color: "Rojo",
+      category: "Económico",
+    },
 
-  {
-    name: "Daihatsu Mira 2020",
-    image: "/carro23.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Rojo",
-    category: "Económico",
-  },
+    {
+      name: "Toyota Passo 2020",
+      image: "/carro16.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+      color: "Gris",
+      category: "Económico",
+    },
 
-  {
-    name: "Subaru Pleo 2020",
-    image: "/carro10.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Rojo",
-    category: "Económico",
-  },
+    {
+      name: "Ford Escape 4x4 SEL 2019",
+      image: "/carro19.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+      color: "Blanca",
+      category: "SUV",
+    },
 
-  {
-    name: "Toyota Passo 2020",
-    image: "/carro16.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Gris",
-    category: "Económico",
-  },
+  ];
 
-  {
-    name: "Ford Escape 4x4 SEL 2019",
-    image: "/carro19.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Blanca",
-    category: "SUV Mediana",
-  },
+  const [selectedCategory, setSelectedCategory] = useState("Todos");
 
-  {
-    name: "Nissan Note 2019",
-    image: "/carro27.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Blanco",
-    category: "Económico",
-  },
-
-  {
-    name: "Suzuki Alto 2019",
-    image: "/carro36.jpg",
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Blanco",
-    category: "Económico",
-  },
-
-];
+  const filteredCars =
+    selectedCategory === "Todos"
+      ? cars
+      : cars.filter((car) => car.category === selectedCategory);
 
   return (
+
     <main className="bg-black text-white min-h-screen px-6 py-24">
 
       <div className="max-w-7xl mx-auto">
@@ -120,30 +88,60 @@ const cars = [
           <p className="text-gray-400 text-lg">
             Vehículos modernos y listos para entrega inmediata
           </p>
-<div className="flex justify-center gap-4 flex-wrap mt-8">
 
-  <button className="bg-[#D4A017] text-black px-6 py-3 rounded-2xl font-bold">
-    Todos
-  </button>
+          <div className="flex justify-center gap-4 flex-wrap mt-8">
 
-  <button className="border border-[#D4A017] text-[#D4A017] px-6 py-3 rounded-2xl font-bold hover:bg-[#D4A017] hover:text-black transition">
-    Económicos
-  </button>
+            <button
+              onClick={() => setSelectedCategory("Todos")}
+              className={`px-6 py-3 rounded-2xl font-bold transition ${
+                selectedCategory === "Todos"
+                  ? "bg-[#D4A017] text-black"
+                  : "border border-[#D4A017] text-[#D4A017]"
+              }`}
+            >
+              Todos
+            </button>
 
-  <button className="border border-[#D4A017] text-[#D4A017] px-6 py-3 rounded-2xl font-bold hover:bg-[#D4A017] hover:text-black transition">
-    SUVs
-  </button>
+            <button
+              onClick={() => setSelectedCategory("Económico")}
+              className={`px-6 py-3 rounded-2xl font-bold transition ${
+                selectedCategory === "Económico"
+                  ? "bg-[#D4A017] text-black"
+                  : "border border-[#D4A017] text-[#D4A017]"
+              }`}
+            >
+              Económicos
+            </button>
 
-  <button className="border border-[#D4A017] text-[#D4A017] px-6 py-3 rounded-2xl font-bold hover:bg-[#D4A017] hover:text-black transition">
-    Luxury
-  </button>
+            <button
+              onClick={() => setSelectedCategory("SUV")}
+              className={`px-6 py-3 rounded-2xl font-bold transition ${
+                selectedCategory === "SUV"
+                  ? "bg-[#D4A017] text-black"
+                  : "border border-[#D4A017] text-[#D4A017]"
+              }`}
+            >
+              SUVs
+            </button>
 
-</div>
+            <button
+              onClick={() => setSelectedCategory("Luxury")}
+              className={`px-6 py-3 rounded-2xl font-bold transition ${
+                selectedCategory === "Luxury"
+                  ? "bg-[#D4A017] text-black"
+                  : "border border-[#D4A017] text-[#D4A017]"
+              }`}
+            >
+              Luxury
+            </button>
+
+          </div>
+
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-          {cars.map((car) => (
+          {filteredCars.map((car) => (
 
             <div
               key={car.name}
@@ -163,8 +161,15 @@ const cars = [
                 </h2>
 
                 <div className="space-y-2 text-gray-300 mb-6">
+
                   <p>Transmisión: {car.transmission}</p>
+
                   <p>Combustible: {car.fuel}</p>
+
+                  <p>Color: {car.color}</p>
+
+                  <p>Categoría: {car.category}</p>
+
                 </div>
 
                 <a
@@ -186,5 +191,6 @@ const cars = [
       </div>
 
     </main>
+
   );
 }
