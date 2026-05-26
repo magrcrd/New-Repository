@@ -120,7 +120,25 @@ const cars = [
           <p className="text-gray-400 text-lg">
             Vehículos modernos y listos para entrega inmediata
           </p>
+<div className="flex justify-center gap-4 flex-wrap mt-8">
 
+  <button className="bg-[#D4A017] text-black px-6 py-3 rounded-2xl font-bold">
+    Todos
+  </button>
+
+  <button className="border border-[#D4A017] text-[#D4A017] px-6 py-3 rounded-2xl font-bold hover:bg-[#D4A017] hover:text-black transition">
+    Económicos
+  </button>
+
+  <button className="border border-[#D4A017] text-[#D4A017] px-6 py-3 rounded-2xl font-bold hover:bg-[#D4A017] hover:text-black transition">
+    SUVs
+  </button>
+
+  <button className="border border-[#D4A017] text-[#D4A017] px-6 py-3 rounded-2xl font-bold hover:bg-[#D4A017] hover:text-black transition">
+    Luxury
+  </button>
+
+</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
