@@ -1,0 +1,93 @@
+export default function Catalogo() {
+
+  const cars = [
+    {
+      name: "Hyundai Elantra SEL 2020",
+      image: "/carro1.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+    },
+
+    {
+      name: "Kia Sorento 2020",
+      image: "/carro2.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+    },
+
+    {
+      name: "Chevrolet Tahoe 2025",
+      image: "/carro3.jpg",
+      transmission: "Automático",
+      fuel: "Gasolina",
+    },
+  ];
+
+  return (
+    <main className="bg-black text-white min-h-screen px-6 py-24">
+
+      <div className="max-w-7xl mx-auto">
+
+        <div className="text-center mb-16">
+
+          <p className="uppercase tracking-[8px] text-[#D4A017] mb-4">
+            MAG RENT CAR
+          </p>
+
+          <h1 className="text-5xl font-bold mb-6">
+            Catálogo de Vehículos
+          </h1>
+
+          <p className="text-gray-400 text-lg">
+            Vehículos modernos y listos para entrega inmediata
+          </p>
+
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {cars.map((car) => (
+
+            <div
+              key={car.name}
+              className="bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 hover:border-[#D4A017] transition duration-300"
+            >
+
+              <img
+                src={car.image}
+                alt={car.name}
+                className="w-full h-72 object-cover"
+              />
+
+              <div className="p-6">
+
+                <h2 className="text-2xl font-bold mb-4">
+                  {car.name}
+                </h2>
+
+                <div className="space-y-2 text-gray-300 mb-6">
+                  <p>Transmisión: {car.transmission}</p>
+                  <p>Combustible: {car.fuel}</p>
+                </div>
+
+                <a
+                  href="https://wa.me/18092380861"
+                  target="_blank"
+                  className="block text-center bg-[#D4A017] text-black py-4 rounded-2xl font-bold hover:scale-[1.02] transition"
+                >
+                  Consultar Disponibilidad
+                </a>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </main>
+  );
+}
