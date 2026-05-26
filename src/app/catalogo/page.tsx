@@ -204,12 +204,12 @@ export default function Catalogo() {
 },
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
-
   const filteredCars =
-    selectedCategory === "Todos"
-      ? cars
-      : cars.filter((car) => car.category === selectedCategory);
+  selectedCategory === "Todos"
+    ? cars
+    : cars.filter((car) =>
+        car.category.includes(selectedCategory)
+      );
 
   return (
 
