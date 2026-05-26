@@ -29,12 +29,13 @@ export default function Home() {
             <div className="flex items-center gap-3">
 
               <img
-                src="/logo.png"
+                src="/magrcrd.png"
                 alt="MAG RENT CAR"
-                className="w-12 h-12 object-contain"
+                className="w-16 h-16 object-contain"
               />
 
               <div>
+
                 <h1 className="font-bold text-xl">
                   MAG RENT CAR
                 </h1>
@@ -42,6 +43,7 @@ export default function Home() {
                 <p className="text-xs text-[#D4A017]">
                   Premium Mobility
                 </p>
+
               </div>
 
             </div>
@@ -62,7 +64,7 @@ export default function Home() {
         <section className="relative h-screen flex items-center justify-center text-center px-6">
 
           <img
-            src="/magrcrd.png"
+            src="/carro3.jpg"
             alt="car"
             className="absolute inset-0 w-full h-full object-cover opacity-40"
           />
