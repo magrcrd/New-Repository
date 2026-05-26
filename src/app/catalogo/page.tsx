@@ -70,7 +70,7 @@ export default function Catalogo() {
 
 {
   name: "Mitsubishi Mirage G4 2019",
-  image: "/carro24.jpg",
+  image: "/carro24.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Azul",
@@ -79,7 +79,7 @@ export default function Catalogo() {
 
 {
   name: "Daihatsu Mira 2019",
-  image: "/carro25.jpg",
+  image: "/carro25.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Azul",
@@ -88,7 +88,7 @@ export default function Catalogo() {
 
 {
   name: "Toyota Passo 2020",
-  image: "/carro26.jpg",
+  image: "/carro26.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Gris",
@@ -106,7 +106,7 @@ export default function Catalogo() {
 
 {
   name: "Daihatsu Mira 2020",
-  image: "/carro28.jpg",
+  image: "/carro28.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -115,7 +115,7 @@ export default function Catalogo() {
 
 {
   name: "Mitsubishi Mirage G4 2019",
-  image: "/carro29.jpg",
+  image: "/carro29.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -124,7 +124,7 @@ export default function Catalogo() {
 
 {
   name: "Mitsubishi Mirage G4 2019",
-  image: "/carro30.jpg",
+  image: "/carro30.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Rojo",
@@ -133,7 +133,7 @@ export default function Catalogo() {
 
 {
   name: "Daihatsu Mira 2020",
-  image: "/carro31.jpg",
+  image: "/carro31.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -142,7 +142,7 @@ export default function Catalogo() {
 
 {
   name: "Daihatsu Mira 2016",
-  image: "/carro32.jpg",
+  image: "/carro32.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -151,7 +151,7 @@ export default function Catalogo() {
 
 {
   name: "Mitsubishi Mirage Hatchback G4 2019",
-  image: "/carro33.jpg",
+  image: "/carro33.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Gris",
@@ -160,7 +160,7 @@ export default function Catalogo() {
 
 {
   name: "Kia Sorento SEL 2019",
-  image: "/carro34.jpg",
+  image: "/carro34.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -169,7 +169,7 @@ export default function Catalogo() {
 
 {
   name: "Daihatsu Mira 2016",
-  image: "/carro35.jpg",
+  image: "/carro35.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -187,7 +187,7 @@ export default function Catalogo() {
 
 {
   name: "Daihatsu Mira 2019",
-  image: "/carro37.jpg",
+  image: "/carro37.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Blanco",
@@ -196,7 +196,7 @@ export default function Catalogo() {
 
 {
   name: "Suzuki Alto 2016",
-  image: "/carro38.jpg",
+  image: "/carro38.jpeg",
   transmission: "Automático",
   fuel: "Gasolina",
   color: "Gris",
