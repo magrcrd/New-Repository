@@ -27,12 +27,16 @@ export default function Login() {
 
     }
 
-    alert("Bienvenido");
+    // USUARIO REAL DE SUPABASE
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     // ADMIN
 
     if (
-      email ===
+      user?.email ===
       "magrcrd@gmail.com"
     ) {
 
