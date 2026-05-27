@@ -60,9 +60,22 @@ export default function Login() {
           MAG RENT CAR
         </p>
 
-        <h1 className="text-3xl font-bold mb-8">
-          Iniciar Sesión
-        </h1>
+        {/* HEADER */}
+
+        <div className="flex items-center justify-between mb-8">
+
+          <h1 className="text-3xl font-bold">
+            Iniciar Sesión
+          </h1>
+
+          <a
+            href="/"
+            className="bg-white text-black px-4 py-2 rounded-2xl font-bold text-sm"
+          >
+            Inicio
+          </a>
+
+        </div>
 
         <div className="space-y-5">
 
