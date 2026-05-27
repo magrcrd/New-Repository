@@ -104,13 +104,36 @@ export default function ReservasAdmin() {
 
       <div className="max-w-7xl mx-auto">
 
-        <h1 className="text-5xl font-bold mb-3">
-          Reservas
-        </h1>
+        {/* HEADER */}
 
-        <p className="text-gray-400 mb-10">
-          Gestión de reservas de clientes
-        </p>
+        <div className="flex items-center justify-between mb-10">
+
+          <div>
+
+            <h1 className="text-5xl font-bold mb-3">
+              Reservas
+            </h1>
+
+            <p className="text-gray-400">
+              Gestión de reservas de clientes
+            </p>
+
+          </div>
+
+          <button
+            onClick={async () => {
+
+              await supabase.auth.signOut();
+
+              window.location.href = "/login";
+
+            }}
+            className="bg-red-500 px-5 py-3 rounded-2xl font-bold hover:scale-105 transition"
+          >
+            Cerrar Sesión
+          </button>
+
+        </div>
 
         {/* CALENDARIO */}
 
