@@ -65,12 +65,6 @@ export default function Home() {
                 Crear Cuenta
               </a>
 
-              <a
-                href="/catalogo"
-                className="border border-white/20 px-5 py-3 rounded-2xl font-bold hover:border-[#D4A017] hover:text-[#D4A017] transition"
-              >
-                Catálogo
-              </a>
 
               <a
                 href="/admin/vehiculos?v=2"
