@@ -22,6 +22,7 @@ export default function Home() {
       <main className="bg-black text-white min-h-screen">
 
         {/* NAVBAR */}
+
         <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10">
 
           <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -48,19 +49,37 @@ export default function Home() {
 
             </div>
 
-            <a
-              href="https://wa.me/18092380861"
-              target="_blank"
-              className="bg-[#D4A017] text-black px-5 py-3 rounded-xl font-bold hover:scale-105 transition"
-            >
-              WhatsApp
-            </a>
+            <div className="flex items-center gap-3 flex-wrap">
+
+              <a
+                href="/login"
+                className="bg-white text-black px-5 py-3 rounded-2xl font-bold hover:scale-105 transition"
+              >
+                Login
+              </a>
+
+              <a
+                href="/register"
+                className="bg-[#D4A017] text-black px-5 py-3 rounded-2xl font-bold hover:scale-105 transition"
+              >
+                Crear Cuenta
+              </a>
+
+              <a
+                href="/catalogo"
+                className="border border-white/20 px-5 py-3 rounded-2xl font-bold hover:border-[#D4A017] hover:text-[#D4A017] transition"
+              >
+                Catálogo
+              </a>
+
+            </div>
 
           </div>
 
         </nav>
 
         {/* HERO */}
+
         <section className="relative h-screen flex items-center justify-center text-center px-6">
 
           <img
@@ -107,6 +126,7 @@ export default function Home() {
         </section>
 
         {/* VEHICULOS */}
+
         <section className="py-24 px-6 md:px-16">
 
           <div className="text-center mb-14">
@@ -161,6 +181,7 @@ export default function Home() {
         </section>
 
         {/* FOOTER */}
+
         <footer className="border-t border-white/10 py-10 text-center">
 
           <h3 className="text-2xl font-bold mb-3">
