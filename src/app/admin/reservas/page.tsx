@@ -7,14 +7,59 @@ import "react-calendar/dist/Calendar.css";
 
 export default function ReservasAdmin() {
 
-  const [reservations, setReservations] = useState<any[]>([]);
-  const [date, setDate] = useState(new Date());
+  const [authorized, setAuthorized] =
+    useState(false);
+
+  const [reservations, setReservations] =
+    useState<any[]>([]);
+
+  const [date, setDate] =
+    useState(new Date());
 
   useEffect(() => {
 
-    fetchReservations();
+    checkAdmin();
 
   }, []);
+
+  const checkAdmin = async () => {
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // SI NO HAY LOGIN
+
+    if (!user) {
+
+      window.location.href = "/login";
+
+      return;
+
+    }
+
+    // SOLO ADMIN
+
+    if (
+      user.email !==
+      "magrcrd@gmail.com"
+    ) {
+
+      alert(
+        "No autorizado"
+      );
+
+      window.location.href = "/";
+
+      return;
+
+    }
+
+    setAuthorized(true);
+
+    fetchReservations();
+
+  };
 
   const fetchReservations = async () => {
 
@@ -45,6 +90,14 @@ export default function ReservasAdmin() {
 
   };
 
+  // BLOQUEAR PANTALLA
+
+  if (!authorized) {
+
+    return null;
+
+  }
+
   return (
 
     <main className="bg-black text-white min-h-screen p-10">
@@ -64,7 +117,9 @@ export default function ReservasAdmin() {
         <div className="bg-white text-black p-6 rounded-3xl mb-10">
 
           <Calendar
-            onChange={(value) => setDate(value as Date)}
+            onChange={(value) =>
+              setDate(value as Date)
+            }
             value={date}
           />
 
@@ -109,14 +164,18 @@ export default function ReservasAdmin() {
                       <span className="font-bold text-white">
                         Inicio:
                       </span>{" "}
-                      {reservation.start_date}
+                      {new Date(
+                        reservation.start_date
+                      ).toLocaleDateString("es-DO")}
                     </p>
 
                     <p>
                       <span className="font-bold text-white">
                         Final:
                       </span>{" "}
-                      {reservation.end_date}
+                      {new Date(
+                        reservation.end_date
+                      ).toLocaleDateString("es-DO")}
                     </p>
 
                     <p>
