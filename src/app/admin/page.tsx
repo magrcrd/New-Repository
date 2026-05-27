@@ -15,14 +15,6 @@ export default function Admin() {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
-  useEffect(() => {
-
-    checkUser();
-
-    fetchCars();
-
-  }, []);
-
   const checkUser = async () => {
 
     const { data } = await supabase.auth.getUser();
@@ -47,6 +39,14 @@ export default function Admin() {
     }
 
   };
+
+  useEffect(() => {
+
+    checkUser();
+
+    fetchCars();
+
+  }, []);
 
   const deleteCar = async (id: number) => {
 
@@ -160,8 +160,6 @@ export default function Admin() {
 
         </div>
 
-        {/* FORMULARIO */}
-
         <div className="bg-zinc-900 p-6 rounded-3xl mb-10 border border-white/10">
 
           <div className="grid md:grid-cols-5 gap-4">
@@ -213,14 +211,12 @@ export default function Admin() {
 
         </div>
 
-        {/* VEHICULOS */}
-
         <div className="grid gap-6">
 
-          {cars.map((car: any) => (
+          {cars.map((car, index) => (
 
             <div
-              key={car.id}
+              key={index}
               className="bg-zinc-900 border border-white/10 rounded-3xl p-6 flex items-center justify-between"
             >
 
