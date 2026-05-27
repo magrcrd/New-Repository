@@ -29,7 +29,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
 
               <img
-                src="/magrcrd.png"
+                src="/logo.png?v=3"
                 alt="MAG RENT CAR"
                 className="w-16 h-16 object-contain"
               />
