@@ -72,6 +72,13 @@ export default function Home() {
                 Catálogo
               </a>
 
+              <a
+                href="/admin/reservas"
+                className="bg-red-500 px-5 py-3 rounded-2xl font-bold hover:scale-105 transition"
+              >
+                Admin
+              </a>
+
             </div>
 
           </div>
