@@ -13,17 +13,15 @@ export default function Login() {
 
   const handleLogin = async () => {
 
-    // CERRAR SESIÓN ANTERIOR
+    // LOGIN
 
-    await supabase.auth.signOut();
-
-    // LOGIN NUEVO
-
-    const { error } =
-      await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+    const {
+      data,
+      error,
+    } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
 
@@ -33,11 +31,10 @@ export default function Login() {
 
     }
 
-    // USUARIO REAL DE SUPABASE
+    // USUARIO DEL LOGIN ACTUAL
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    const user =
+      data.user;
 
     // ADMIN
 
