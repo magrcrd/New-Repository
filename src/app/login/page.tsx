@@ -1,0 +1,83 @@
+"use client";
+
+import { useState } from "react";
+import { supabase } from "@/lib/supabase";
+
+export default function Login() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+
+    const { error } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+    if (error) {
+
+      alert(error.message);
+
+      return;
+
+    }
+
+    alert("Bienvenido");
+
+    window.location.href = "/perfil";
+
+  };
+
+  return (
+
+    <main className="bg-black text-white min-h-screen flex items-center justify-center px-5">
+
+      <div className="w-full max-w-md bg-zinc-900 border border-white/10 rounded-3xl p-8">
+
+        <p className="text-[#D4A017] uppercase tracking-[5px] text-sm mb-3">
+          MAG RENT CAR
+        </p>
+
+        <h1 className="text-3xl font-bold mb-8">
+          Iniciar Sesión
+        </h1>
+
+        <div className="space-y-5">
+
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#D4A017]"
+          />
+
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+            className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#D4A017]"
+          />
+
+          <button
+            onClick={handleLogin}
+            className="w-full bg-[#D4A017] text-black py-4 rounded-2xl font-bold"
+          >
+            Entrar
+          </button>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  );
+}

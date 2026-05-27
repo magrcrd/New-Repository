@@ -85,8 +85,13 @@ export default function Admin() {
 
     }
 
-    const imageUrl =
-      `https://jfmttrqacszcwpfiijmc.supabase.co/storage/v1/object/public/cars/${fileName}`;
+    const {
+      data: publicUrlData,
+    } = supabase.storage
+      .from("cars")
+      .getPublicUrl(fileName);
+
+    const imageUrl = publicUrlData.publicUrl;
 
     const { error } = await supabase
       .from("cars")
