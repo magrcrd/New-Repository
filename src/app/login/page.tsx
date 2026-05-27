@@ -5,8 +5,11 @@ import { supabase } from "@/lib/supabase";
 
 export default function Login() {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] =
+    useState("");
+
+  const [password, setPassword] =
+    useState("");
 
   const handleLogin = async () => {
 
@@ -26,7 +29,24 @@ export default function Login() {
 
     alert("Bienvenido");
 
-    window.location.href = "/perfil";
+    // ADMIN
+
+    if (
+      email ===
+      "magrcrd@gmail.com"
+    ) {
+
+      window.location.href =
+        "/admin/vehiculos";
+
+    } else {
+
+      // CLIENTE
+
+      window.location.href =
+        "/perfil";
+
+    }
 
   };
 
