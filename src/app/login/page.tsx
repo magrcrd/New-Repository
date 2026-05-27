@@ -13,6 +13,12 @@ export default function Login() {
 
   const handleLogin = async () => {
 
+    // CERRAR SESIÓN ANTERIOR
+
+    await supabase.auth.signOut();
+
+    // LOGIN NUEVO
+
     const { error } =
       await supabase.auth.signInWithPassword({
         email,
