@@ -106,7 +106,7 @@ export default function ReservasAdmin() {
 
         {/* HEADER */}
 
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-10">
 
           <div>
 
@@ -120,18 +120,43 @@ export default function ReservasAdmin() {
 
           </div>
 
-          <button
-            onClick={async () => {
+          <div className="flex gap-3 flex-wrap">
 
-              await supabase.auth.signOut();
+            <a
+              href="/"
+              className="bg-white text-black px-5 py-3 rounded-2xl font-bold"
+            >
+              Inicio
+            </a>
 
-              window.location.href = "/login";
+            <a
+              href="/admin/reservas"
+              className="bg-[#D4A017] text-black px-5 py-3 rounded-2xl font-bold"
+            >
+              Reservas
+            </a>
 
-            }}
-            className="bg-red-500 px-5 py-3 rounded-2xl font-bold hover:scale-105 transition"
-          >
-            Cerrar Sesión
-          </button>
+            <a
+              href="/admin/vehiculos"
+              className="bg-blue-500 px-5 py-3 rounded-2xl font-bold"
+            >
+              Vehículos
+            </a>
+
+            <button
+              onClick={async () => {
+
+                await supabase.auth.signOut();
+
+                window.location.href = "/login";
+
+              }}
+              className="bg-red-500 px-5 py-3 rounded-2xl font-bold"
+            >
+              Salir
+            </button>
+
+          </div>
 
         </div>
 
