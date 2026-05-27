@@ -67,7 +67,7 @@ export default function Perfil() {
 
         {/* HEADER */}
 
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-10">
 
           <div>
 
@@ -81,12 +81,30 @@ export default function Perfil() {
 
           </div>
 
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 px-5 py-3 rounded-2xl font-bold"
-          >
-            Cerrar Sesión
-          </button>
+          <div className="flex gap-3 flex-wrap">
+
+            <a
+              href="/"
+              className="bg-white text-black px-5 py-3 rounded-2xl font-bold"
+            >
+              Inicio
+            </a>
+
+            <a
+              href="/catalogo"
+              className="bg-[#D4A017] text-black px-5 py-3 rounded-2xl font-bold"
+            >
+              Catálogo
+            </a>
+
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 px-5 py-3 rounded-2xl font-bold"
+            >
+              Cerrar Sesión
+            </button>
+
+          </div>
 
         </div>
 
