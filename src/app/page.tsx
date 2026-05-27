@@ -73,7 +73,7 @@ export default function Home() {
               </a>
 
               <a
-                href="/admin/reservas"
+                href="/admin/vehiculos"
                 className="bg-red-500 px-5 py-3 rounded-2xl font-bold hover:scale-105 transition"
               >
                 Admin
