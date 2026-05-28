@@ -3,13 +3,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
-export default function Vehiculo() {
+export default function VehiculoDetalle() {
 
   const params = useParams();
 
-  const [car, setCar] = useState<any>(null);
-  const [reservations, setReservations] = useState<any[]>([]);
+  const [car, setCar] =
+    useState<any>(null);
+
+  const [reservedDates, setReservedDates] =
+    useState<any[]>([]);
+
+  const [startDate, setStartDate] =
+    useState("");
+
+  const [endDate, setEndDate] =
+    useState("");
 
   useEffect(() => {
 
@@ -24,14 +35,12 @@ export default function Vehiculo() {
 
   const fetchCar = async () => {
 
-    const { data, error } = await supabase
-      .from("cars")
-      .select("*")
-      .eq("id", Number(params.id))
-      .single();
-
-    console.log(data);
-    console.log(error);
+    const { data } =
+      await supabase
+        .from("cars")
+        .select("*")
+        .eq("id", params.id)
+        .single();
 
     if (data) {
 
@@ -41,289 +50,257 @@ export default function Vehiculo() {
 
   };
 
-  const fetchReservations = async () => {
+  const fetchReservations =
+    async () => {
 
-    const { data } = await supabase
-      .from("reservations")
-      .select("*");
+      const { data } =
+        await supabase
+          .from("reservations")
+          .select("*")
+          .eq("car_id", params.id);
 
-    if (data) {
+      if (data) {
 
-      setReservations(data);
+        setReservedDates(data);
+
+      }
+
+    };
+
+  const isDateReserved = (
+    date: Date
+  ) => {
+
+    return reservedDates.some(
+      (reservation) => {
+
+        const start =
+          new Date(
+            reservation.start_date
+          );
+
+        const end =
+          new Date(
+            reservation.end_date
+          );
+
+        return (
+          date >= start &&
+          date <= end
+        );
+
+      }
+    );
+
+  };
+
+  const reserveCar = async () => {
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+
+      alert(
+        "Debes iniciar sesión"
+      );
+
+      window.location.href =
+        "/login";
+
+      return;
 
     }
+
+    if (
+      !startDate ||
+      !endDate
+    ) {
+
+      alert(
+        "Selecciona fechas"
+      );
+
+      return;
+
+    }
+
+    await supabase
+      .from("reservations")
+      .insert([
+        {
+          car_id: car.id,
+          car_name: car.name,
+          user_email:
+            user.email,
+          start_date:
+            startDate,
+          end_date:
+            endDate,
+          status:
+            "Pendiente",
+        },
+      ]);
+
+    alert(
+      "Reserva realizada"
+    );
+
+    window.location.href =
+      "/perfil";
 
   };
 
   if (!car) {
 
     return (
-      <main className="bg-black text-white min-h-screen flex items-center justify-center text-xl">
-        Cargando vehículo...
+
+      <main className="bg-black text-white min-h-screen flex items-center justify-center">
+
+        Cargando...
+
       </main>
+
     );
 
   }
 
   return (
 
-    <main className="bg-black text-white min-h-screen">
+    <main className="bg-black text-white min-h-screen py-16 px-6">
 
-      <div className="max-w-4xl mx-auto px-5 py-10">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
 
-        <div className="grid md:grid-cols-2 gap-6 items-start">
+        {/* IMAGEN */}
 
-          {/* IMAGEN */}
+        <div>
 
-          <div className="max-w-md">
+          <img
+            src={car.image}
+            alt={car.name}
+            className="w-full rounded-3xl object-cover"
+          />
 
-            <img
-              src={car.image}
-              alt={car.name}
-              className="w-full h-[140px] object-cover rounded-3xl border border-white/10"
+        </div>
+
+        {/* INFO */}
+
+        <div>
+
+          <p className="uppercase tracking-[6px] text-[#D4A017] mb-3">
+
+            MAG RENT CAR
+
+          </p>
+
+          <h1 className="text-5xl font-bold mb-6">
+
+            {car.name}
+
+          </h1>
+
+          <div className="space-y-4 text-lg text-gray-300 mb-8">
+
+            <p>
+              <span className="text-white font-bold">
+                Año:
+              </span>{" "}
+              {car.year}
+            </p>
+
+            <p>
+              <span className="text-white font-bold">
+                Transmisión:
+              </span>{" "}
+              {car.transmission}
+            </p>
+
+            <p>
+              <span className="text-white font-bold">
+                Combustible:
+              </span>{" "}
+              {car.fuel}
+            </p>
+
+            <p>
+              <span className="text-white font-bold">
+                Color:
+              </span>{" "}
+              {car.color}
+            </p>
+
+            <p>
+              <span className="text-white font-bold">
+                Categoría:
+              </span>{" "}
+              {car.category}
+            </p>
+
+            <p className="text-4xl text-[#D4A017] font-bold pt-4">
+
+              {car.price}
+
+            </p>
+
+          </div>
+
+          {/* FECHAS */}
+
+          <div className="grid gap-4 mb-8">
+
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) =>
+                setStartDate(
+                  e.target.value
+                )
+              }
+              className="bg-zinc-900 border border-white/10 rounded-2xl px-5 py-4"
+            />
+
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) =>
+                setEndDate(
+                  e.target.value
+                )
+              }
+              className="bg-zinc-900 border border-white/10 rounded-2xl px-5 py-4"
             />
 
           </div>
 
-          {/* INFO */}
+          <button
+            onClick={reserveCar}
+            className="w-full bg-[#D4A017] text-black py-5 rounded-2xl text-xl font-bold hover:scale-[1.02] transition"
+          >
+            Reservar Vehículo
+          </button>
 
-          <div>
+        </div>
 
-            <p className="text-[#D4A017] uppercase tracking-[4px] mb-2 text-xs">
-              MAG RENT CAR
-            </p>
+      </div>
 
-            <h1 className="text-2xl font-bold mb-2">
-              {car.name}
-            </h1>
+      {/* CALENDARIO */}
 
-            <p className="text-[#D4A017] text-xl font-bold mb-5">
-              {car.price}
-            </p>
+      <div className="max-w-4xl mx-auto mt-20">
 
-            {/* SPECS */}
+        <h2 className="text-3xl font-bold mb-8 text-center">
 
-            <div className="grid grid-cols-2 gap-3 mb-6">
+          Fechas Ocupadas
 
-              <div className="bg-zinc-900 border border-white/10 rounded-2xl p-3">
+        </h2>
 
-                <p className="text-gray-400 text-xs mb-1">
-                  Transmisión
-                </p>
+        <div className="bg-white text-black rounded-3xl p-6 flex justify-center">
 
-                <p className="font-semibold text-sm">
-                  {car.transmission}
-                </p>
-
-              </div>
-
-              <div className="bg-zinc-900 border border-white/10 rounded-2xl p-3">
-
-                <p className="text-gray-400 text-xs mb-1">
-                  Combustible
-                </p>
-
-                <p className="font-semibold text-sm">
-                  {car.fuel}
-                </p>
-
-              </div>
-
-              <div className="bg-zinc-900 border border-white/10 rounded-2xl p-3">
-
-                <p className="text-gray-400 text-xs mb-1">
-                  Color
-                </p>
-
-                <p className="font-semibold text-sm">
-                  {car.color}
-                </p>
-
-              </div>
-
-              <div className="bg-zinc-900 border border-white/10 rounded-2xl p-3">
-
-                <p className="text-gray-400 text-xs mb-1">
-                  Categoría
-                </p>
-
-                <p className="font-semibold text-sm">
-                  {car.category}
-                </p>
-
-              </div>
-
-            </div>
-
-            {/* FECHAS */}
-
-            <div className="bg-zinc-900 border border-white/10 rounded-3xl p-4 mb-6">
-
-              <h2 className="text-base font-bold mb-3 text-red-400">
-                Fechas no disponibles
-              </h2>
-
-              <div className="space-y-2">
-
-                {reservations
-                  .filter(
-                    (reservation) =>
-                      reservation.car_name === car.name
-                  )
-                  .map((reservation, index) => (
-
-                    <p
-                      key={index}
-                      className="text-gray-400 text-sm"
-                    >
-                      {new Date(
-                        reservation.start_date
-                      ).toLocaleDateString("es-DO")}{" "}
-                      →
-                      {" "}
-                      {new Date(
-                        reservation.end_date
-                      ).toLocaleDateString("es-DO")}
-                    </p>
-
-                  ))}
-
-                {reservations.filter(
-                  (reservation) =>
-                    reservation.car_name === car.name
-                ).length === 0 && (
-
-                  <p className="text-green-400 text-sm">
-                    Disponible actualmente
-                  </p>
-
-                )}
-
-              </div>
-
-            </div>
-
-            {/* BOTON */}
-
-            <button
-              onClick={async () => {
-
-                const customerName =
-                  prompt("Tu nombre");
-
-                if (!customerName) return;
-
-                const phone =
-                  prompt("Tu teléfono");
-
-                if (!phone) return;
-
-                const startDate =
-                  prompt("Fecha inicio");
-
-                if (!startDate) return;
-
-                const endDate =
-                  prompt("Fecha fin");
-
-                if (!endDate) return;
-
-                const { data: existingReservations } =
-                  await supabase
-                    .from("reservations")
-                    .select("*")
-                    .eq("car_name", car.name);
-
-                const isDateBlocked =
-                  existingReservations?.some(
-                    (reservation) => {
-
-                      const existingStart =
-                        new Date(
-                          reservation.start_date
-                        );
-
-                      const existingEnd =
-                        new Date(
-                          reservation.end_date
-                        );
-
-                      const newStart =
-                        new Date(startDate);
-
-                      const newEnd =
-                        new Date(endDate);
-
-                      return (
-                        newStart <= existingEnd &&
-                        newEnd >= existingStart
-                      );
-
-                    }
-                  );
-
-                if (isDateBlocked) {
-
-                  alert(
-                    "Ese vehículo ya está reservado en esas fechas"
-                  );
-
-                  return;
-
-                }
-
-                // OBTENER USUARIO LOGUEADO
-
-                const {
-                  data: { user },
-                } = await supabase.auth.getUser();
-
-                // CREAR RESERVA
-
-                const { error } = await supabase
-                  .from("reservations")
-                  .insert([
-                    {
-                      car_name: car.name,
-                      customer_name:
-                        customerName,
-                      user_email:
-                        user?.email || null,
-                      phone,
-                      start_date:
-                        startDate,
-                      end_date:
-                        endDate,
-                      status:
-                        "pendiente",
-                    },
-                  ]);
-
-                if (error) {
-
-                  alert(
-                    "Error creando reserva"
-                  );
-
-                  console.log(error);
-
-                  return;
-
-                }
-
-                const whatsappUrl =
-                  `https://wa.me/18092380861?text=Hola,%20quiero%20reservar%20el%20vehículo%20${car.name}`;
-
-                window.location.href =
-                  whatsappUrl;
-
-              }}
-              className="w-full bg-[#D4A017] text-black py-3 rounded-2xl font-bold text-sm hover:scale-[1.01] transition"
-            >
-              Reservar Vehículo
-            </button>
-
-          </div>
+          <Calendar
+            tileDisabled={({ date }) =>
+              isDateReserved(date)
+            }
+          />
 
         </div>
 
