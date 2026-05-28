@@ -134,6 +134,78 @@ export default function VehiculosAdmin() {
 
   };
 
+  // EDITAR VEHÍCULO
+
+  const editCar = async (
+    car: any
+  ) => {
+
+    const newName =
+      prompt(
+        "Nombre",
+        car.name
+      );
+
+    if (!newName) return;
+
+    const newImage =
+      prompt(
+        "Imagen",
+        car.image
+      );
+
+    if (!newImage) return;
+
+    const newTransmission =
+      prompt(
+        "Transmisión",
+        car.transmission
+      );
+
+    if (!newTransmission) return;
+
+    const newFuel =
+      prompt(
+        "Combustible",
+        car.fuel
+      );
+
+    if (!newFuel) return;
+
+    const newCategory =
+      prompt(
+        "Categoría",
+        car.category
+      );
+
+    if (!newCategory) return;
+
+    const newPrice =
+      prompt(
+        "Precio",
+        car.price
+      );
+
+    if (!newPrice) return;
+
+    await supabase
+      .from("cars")
+      .update({
+        name: newName,
+        image: newImage,
+        transmission:
+          newTransmission,
+        fuel: newFuel,
+        category:
+          newCategory,
+        price: newPrice,
+      })
+      .eq("id", car.id);
+
+    fetchCars();
+
+  };
+
   const deleteCar = async (
     id: number
   ) => {
@@ -363,14 +435,27 @@ export default function VehiculosAdmin() {
 
                 </div>
 
-                <button
-                  onClick={() =>
-                    deleteCar(car.id)
-                  }
-                  className="w-full bg-red-500 py-3 rounded-2xl font-bold"
-                >
-                  Eliminar
-                </button>
+                <div className="space-y-3">
+
+                  <button
+                    onClick={() =>
+                      editCar(car)
+                    }
+                    className="w-full bg-blue-500 py-3 rounded-2xl font-bold"
+                  >
+                    Editar
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      deleteCar(car.id)
+                    }
+                    className="w-full bg-red-500 py-3 rounded-2xl font-bold"
+                  >
+                    Eliminar
+                  </button>
+
+                </div>
 
               </div>
 
