@@ -36,13 +36,13 @@ export default function Catalogo() {
       selectedCategory === "Todos"
         ? true
         : selectedCategory === "SUV"
-        ? car.category.includes("SUV")
+        ? car.category?.includes("SUV")
         : selectedCategory === "Luxury"
-        ? car.category.includes("Luxury")
-        : car.category.includes(selectedCategory);
+        ? car.category?.includes("Luxury")
+        : car.category?.includes(selectedCategory);
 
     const matchesSearch =
-      car.name.toLowerCase().includes(searchTerm.toLowerCase());
+      car.name?.toLowerCase().includes(searchTerm.toLowerCase());
 
     return matchesCategory && matchesSearch;
 
@@ -234,7 +234,7 @@ export default function Catalogo() {
                       <span className="text-white font-semibold">
                         Categoría:
                       </span>{" "}
-                      {car.category}
+                      {car.category || "Sin categoría"}
                     </p>
 
                   </div>
