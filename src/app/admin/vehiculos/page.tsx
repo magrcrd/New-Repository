@@ -17,6 +17,9 @@ export default function VehiculosAdmin() {
   const [image, setImage] =
     useState("");
 
+  const [imageFile, setImageFile] =
+    useState<any>(null);
+
   const [year, setYear] =
     useState("");
 
@@ -88,16 +91,53 @@ export default function VehiculosAdmin() {
 
   };
 
+  // SUBIR IMAGEN
+
+  const uploadImage = async () => {
+
+    if (!imageFile) return "";
+
+    const fileName =
+      `${Date.now()}-${imageFile.name}`;
+
+    const { error } =
+      await supabase.storage
+        .from("cars")
+        .upload(
+          fileName,
+          imageFile
+        );
+
+    if (error) {
+
+      alert(
+        "Error subiendo imagen"
+      );
+
+      return "";
+
+    }
+
+    const {
+      data: { publicUrl },
+    } = supabase.storage
+      .from("cars")
+      .getPublicUrl(fileName);
+
+    return publicUrl;
+
+  };
+
   const addCar = async () => {
 
     if (
       !name ||
-      !image ||
       !year ||
       !transmission ||
       !fuel ||
       !category ||
-      !price
+      !price ||
+      !imageFile
     ) {
 
       alert(
@@ -108,12 +148,19 @@ export default function VehiculosAdmin() {
 
     }
 
+    // SUBIR IMAGEN
+
+    const imageUrl =
+      await uploadImage();
+
+    if (!imageUrl) return;
+
     await supabase
       .from("cars")
       .insert([
         {
           name,
-          image,
+          image: imageUrl,
           year,
           transmission,
           fuel,
@@ -124,6 +171,7 @@ export default function VehiculosAdmin() {
 
     setName("");
     setImage("");
+    setImageFile(null);
     setYear("");
     setTransmission("");
     setFuel("");
@@ -147,14 +195,6 @@ export default function VehiculosAdmin() {
       );
 
     if (!newName) return;
-
-    const newImage =
-      prompt(
-        "Imagen",
-        car.image
-      );
-
-    if (!newImage) return;
 
     const newTransmission =
       prompt(
@@ -192,7 +232,6 @@ export default function VehiculosAdmin() {
       .from("cars")
       .update({
         name: newName,
-        image: newImage,
         transmission:
           newTransmission,
         fuel: newFuel,
@@ -316,11 +355,11 @@ export default function VehiculosAdmin() {
             />
 
             <input
-              type="text"
-              placeholder="Imagen /carro.jpg"
-              value={image}
-              onChange={(e) =>
-                setImage(e.target.value)
+              type="file"
+              onChange={(e: any) =>
+                setImageFile(
+                  e.target.files[0]
+                )
               }
               className="bg-black border border-white/10 rounded-2xl p-4"
             />
