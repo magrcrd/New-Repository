@@ -29,6 +29,9 @@ export default function VehiculosAdmin() {
   const [fuel, setFuel] =
     useState("");
 
+  const [color, setColor] =
+    useState("");
+
   const [category, setCategory] =
     useState("");
 
@@ -135,6 +138,7 @@ export default function VehiculosAdmin() {
       !year ||
       !transmission ||
       !fuel ||
+      !color ||
       !category ||
       !price ||
       !imageFile
@@ -164,6 +168,7 @@ export default function VehiculosAdmin() {
           year,
           transmission,
           fuel,
+          color,
           category,
           price,
         },
@@ -175,6 +180,7 @@ export default function VehiculosAdmin() {
     setYear("");
     setTransmission("");
     setFuel("");
+    setColor("");
     setCategory("");
     setPrice("");
 
@@ -212,6 +218,14 @@ export default function VehiculosAdmin() {
 
     if (!newFuel) return;
 
+    const newColor =
+      prompt(
+        "Color",
+        car.color
+      );
+
+    if (!newColor) return;
+
     const newCategory =
       prompt(
         "Categoría",
@@ -235,6 +249,7 @@ export default function VehiculosAdmin() {
         transmission:
           newTransmission,
         fuel: newFuel,
+        color: newColor,
         category:
           newCategory,
         price: newPrice,
@@ -398,6 +413,16 @@ export default function VehiculosAdmin() {
 
             <input
               type="text"
+              placeholder="Color"
+              value={color}
+              onChange={(e) =>
+                setColor(e.target.value)
+              }
+              className="bg-black border border-white/10 rounded-2xl p-4"
+            />
+
+            <input
+              type="text"
               placeholder="Categoría"
               value={category}
               onChange={(e) =>
@@ -462,6 +487,10 @@ export default function VehiculosAdmin() {
 
                   <p>
                     Combustible: {car.fuel}
+                  </p>
+
+                  <p>
+                    Color: {car.color}
                   </p>
 
                   <p>
