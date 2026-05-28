@@ -26,6 +26,9 @@ export default function VehiculosAdmin() {
   const [fuel, setFuel] =
     useState("");
 
+  const [category, setCategory] =
+    useState("");
+
   const [price, setPrice] =
     useState("");
 
@@ -93,6 +96,7 @@ export default function VehiculosAdmin() {
       !year ||
       !transmission ||
       !fuel ||
+      !category ||
       !price
     ) {
 
@@ -113,6 +117,7 @@ export default function VehiculosAdmin() {
           year,
           transmission,
           fuel,
+          category,
           price,
         },
       ]);
@@ -122,6 +127,7 @@ export default function VehiculosAdmin() {
     setYear("");
     setTransmission("");
     setFuel("");
+    setCategory("");
     setPrice("");
 
     fetchCars();
@@ -281,6 +287,16 @@ export default function VehiculosAdmin() {
 
             <input
               type="text"
+              placeholder="Categoría"
+              value={category}
+              onChange={(e) =>
+                setCategory(e.target.value)
+              }
+              className="bg-black border border-white/10 rounded-2xl p-4"
+            />
+
+            <input
+              type="text"
               placeholder="Precio"
               value={price}
               onChange={(e) =>
@@ -335,6 +351,10 @@ export default function VehiculosAdmin() {
 
                   <p>
                     Combustible: {car.fuel}
+                  </p>
+
+                  <p>
+                    Categoría: {car.category}
                   </p>
 
                   <p>
